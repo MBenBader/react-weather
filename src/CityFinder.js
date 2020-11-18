@@ -12,12 +12,11 @@ function CityFinder() {
             console.log("find =>", e.target.value)
             dispatch({ type: "SET_CITY_TO_FIND", payload: e.target.value })
         }
-
     }
 
-    const handleClick = () => {
+    const handleClick = (city) => {
         setActive(!active)
-
+        dispatch({ type: "SET_CITY", payload: city })
     }
 
     return (
@@ -37,7 +36,7 @@ function CityFinder() {
                 </div>
                 {cities.map(city => {
                     return (
-                        <a className="panel-block is-active" onClick={handleClick}>
+                        <a className="panel-block is-active" onClick={() => {handleClick(city)}}>
                             <span className="panel-icon">
                                 <i className="fas fa-book" aria-hidden="true"></i>
                             </span>
