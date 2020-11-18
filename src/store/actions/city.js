@@ -12,3 +12,8 @@ export const setCity = (payload) => ({
     type: "SET_CITY",
     payload: payload
 })
+
+export const setRegion = (payload) => ({
+    type: "SET_REGION",
+    payload: payload
+})

@@ -1,7 +1,8 @@
 const initial_states = {
     cities: [],
     cityToFind: "",
-    city: ""
+    city: "",
+    codeRegion: ""
 }
 
 const cityReducer = (state = initial_states, action) => {
@@ -20,6 +21,11 @@ const cityReducer = (state = initial_states, action) => {
             return {
                 ...state,
                 city: action.payload
+            }
+        case "SET_REGION":
+            return {
+                ...state,
+                codeRegion: action.payload
             }
         default: return state
     }
