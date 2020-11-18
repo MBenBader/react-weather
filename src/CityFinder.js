@@ -1,8 +1,10 @@
 import { useDispatch, useSelector } from 'react-redux';
+import React from 'react'
+import Weather from './Weather';
 function CityFinder() {
 
     const cities = useSelector(state => state.cityReducer.cities);
-
+    const [active, setActive] = React.useState(false);
     const dispatch = useDispatch()
 
     const findCity = (e) => {
@@ -13,32 +15,50 @@ function CityFinder() {
 
     }
 
+    const handleClick = () => {
+        setActive(!active)
+
+    }
+
     return (
-        <article className="panel is-primary">
-            <p className="panel-heading">
-                Find city
-            </p>
-            <div className="panel-block">
-                <p className="control has-icons-left">
-                    <input className="input is-primary" type="text" placeholder="Search" onChange={findCity} />
-                    <span className="icon is-left">
-                        <i className="fas fa-search" aria-hidden="true"></i>
-                    </span>
+        <div>
+            <article className="panel is-primary">
+                <p className="panel-heading">
+                    Find city
                 </p>
-
-            </div>
-            {cities.map(city => {
-                return (
-                    <a class="panel-block is-active">
-                        <span class="panel-icon">
-                            <i class="fas fa-book" aria-hidden="true"></i>
+                <div className="panel-block">
+                    <p className="control has-icons-left">
+                        <input className="input is-primary" type="text" placeholder="Search" onChange={findCity} />
+                        <span className="icon is-left">
+                            <i className="fas fa-search" aria-hidden="true"></i>
                         </span>
-                        {city}
-                    </a>
-                )
-            })}
+                    </p>
 
-        </article>
+                </div>
+                {cities.map(city => {
+                    return (
+                        <a className="panel-block is-active" onClick={handleClick}>
+                            <span className="panel-icon">
+                                <i className="fas fa-book" aria-hidden="true"></i>
+                            </span>
+                            {city}
+                        </a>
+                    )
+                })}
+
+
+            </article>
+            <div className={`modal ${active && "is-active"}`}  >
+                <div className="modal-background"></div>
+                <div className="modal-content">
+                    <Weather/>
+                </div>
+                <button className="modal-close is-large" aria-label="close" onClick={handleClick}></button>
+            </div>
+        </div>
+
+
+
 
 
     )
