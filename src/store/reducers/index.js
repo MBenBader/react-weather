@@ -3,5 +3,4 @@ import cityReducer from "./city"
 
 export default combineReducers({
     cityReducer
-
 })

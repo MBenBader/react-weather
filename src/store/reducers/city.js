@@ -1,16 +1,21 @@
 const initial_states = {
-    cities : [],
-    cityToFind : ""
+    cities: [],
+    cityToFind: ""
 }
 
 const cityReducer = (state = initial_states, action) => {
     switch (action.type) {
-        case "SET_CITY_TO_FIND" :
+        case "SET_CITY_TO_FIND":
             return {
                 ...state,
-                cityToFind : action.payload
+                cityToFind: action.payload
             }
-        default : return state
+        case "SET_CITIES":
+            return {
+                ...state,
+                cities: action.payload
+            }
+        default: return state
     }
 }
 export default cityReducer;
